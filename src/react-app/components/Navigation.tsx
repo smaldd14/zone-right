@@ -1,5 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Menu } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
@@ -39,11 +46,31 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button - you can expand this later if needed */}
+          {/* Mobile menu */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm">
-              Menu
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {navItems.map((item) => (
+                  <DropdownMenuItem key={item.path} asChild>
+                    <Link 
+                      to={item.path}
+                      className={`w-full ${
+                        location.pathname === item.path 
+                          ? "bg-accent text-accent-foreground" 
+                          : ""
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
