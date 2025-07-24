@@ -11,5 +11,12 @@
   "assets": {
     "directory": "./dist/client",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "zone-right-db",
+      "database_id": "510c4454-1e77-42e2-be8e-a8c663ce2f60"
+    }
+  ]
 }
